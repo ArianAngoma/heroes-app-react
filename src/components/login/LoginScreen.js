@@ -9,7 +9,7 @@ export const LoginScreen = ({history}) => {
         // Añade a la historia la ruta anterior
         // history.push('/');
 
-        // Reemplaza la el historial que no visitó el login
+        // Reemplaza el historial que no visitó el login
         // history.replace('/');
 
         dispatch({
