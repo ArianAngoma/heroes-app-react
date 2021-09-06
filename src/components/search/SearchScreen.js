@@ -4,6 +4,7 @@ import {heroes} from "../../data/heroes";
 import {HeroCard} from "../heroes/HeroCard";
 import {useForm} from "../../hooks/useForm";
 import {useMemo} from "react";
+import {getHeroesByName} from "../../selectors/getHeroesByName";
 
 export const SearchScreen = ({history}) => {
     const location = useLocation();
@@ -15,6 +16,8 @@ export const SearchScreen = ({history}) => {
     });
 
     const {searchHero} = values;
+
+    const heroesFiltered = useMemo(() => getHeroesByName(q), [q]);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -52,7 +55,21 @@ export const SearchScreen = ({history}) => {
                     <hr/>
 
                     {
-                        heroes.map(hero => (
+                        (q === '') &&
+                        <div className="alert alert-info">
+                            Search a hero
+                        </div>
+                    }
+
+                    {
+                        (q !== '' && heroesFiltered.length === 0) &&
+                        <div className="alert alert-danger">
+                            There is no a hero with {q}
+                        </div>
+                    }
+
+                    {
+                        heroesFiltered.map(hero => (
                             <HeroCard key={hero.id} {...hero}/>
                         ))
                     }
