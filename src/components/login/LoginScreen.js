@@ -12,6 +12,8 @@ export const LoginScreen = ({history}) => {
         // Reemplaza el historial que no visitó el login
         // history.replace('/');
 
+        const lastPath = localStorage.getItem('lastPath') || '/';
+
         dispatch({
             type: types.login,
             payload: {
@@ -19,7 +21,7 @@ export const LoginScreen = ({history}) => {
             }
         });
 
-        history.replace('/');
+        history.replace(lastPath);
     }
 
     return (
