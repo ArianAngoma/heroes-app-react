@@ -1,9 +1,10 @@
 import {Redirect, useParams} from "react-router-dom";
 import {getHeroById} from "../../selectors/getHeroById";
 import {useMemo} from "react";
+import {heroImages} from "../../helpers/heroImages";
 
 // import batman from '../../assets/heroes/dc-batman.jpg';
-const heroImages = require.context('../../assets/heroes', true);
+// const heroImages = require.context('../../assets/heroes', true);
 
 export const HeroScreen = ({history}) => {
     const {heroId} = useParams();
