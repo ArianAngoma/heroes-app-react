@@ -2,6 +2,9 @@ import {Redirect, useParams} from "react-router-dom";
 import {getHeroById} from "../../selectors/getHeroById";
 import {useMemo} from "react";
 
+// import batman from '../../assets/heroes/dc-batman.jpg';
+const heroImages = require.context('../../assets/heroes', true);
+
 export const HeroScreen = ({history}) => {
     const {heroId} = useParams();
 
@@ -19,7 +22,15 @@ export const HeroScreen = ({history}) => {
     return (
         <div className="row mt-5">
             <div className="col-4">
-                <img src={`../assets/heroes/${heroId}.jpg`} alt={superhero}
+                {/* Desde public/assets */}
+                {/*<img src={`../assets/heroes/${heroId}.jpg`} alt={superhero}
+                     className="img-thumbnail animate__animated animate__fadeInLeft"/>*/}
+
+                {/* Cuando tenemos un import */}
+                {/*<img src={batman} alt={superhero}
+                     className="img-thumbnail animate__animated animate__fadeInLeft"/>*/}
+
+                <img src={heroImages(`./${heroId}.jpg`).default} alt={superhero}
                      className="img-thumbnail animate__animated animate__fadeInLeft"/>
             </div>
 
